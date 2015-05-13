@@ -235,7 +235,7 @@ SlideShow.getSlideshowTemplate = function () {
 	var defer = $.Deferred();
 	if (!this.$slideshowTemplate) {
 		var self = this;
-		var url = OC.generateUrl('apps/galleryplus/slideshow', null);
+		var url = OC.generateUrl('apps/gallery/slideshow', null);
 		$.get(url, function (tmpl) {
 			var template = $(tmpl);
 			var tmplButton;
@@ -303,7 +303,7 @@ $(document).ready(function () {
 	if ($('#imgframe').length > 0) {
 		return true;
 	}
-	
+
 	$.when(SlideShow.getSlideshowTemplate()).then(function ($tmpl) {
 		$('body').append($tmpl); //move the slideshow outside the content so we can hide the content
 

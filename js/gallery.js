@@ -6,7 +6,7 @@ Gallery.currentAlbum = null;
 Gallery.config = {};
 Gallery.albumMap = {};
 Gallery.imageMap = {};
-Gallery.appName = 'galleryplus';
+Gallery.appName = 'gallery';
 Gallery.token = undefined;
 
 /**

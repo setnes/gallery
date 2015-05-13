@@ -1,4 +1,4 @@
-# Gallery 
+# Gallery
 [![Build Status](https://travis-ci.org/owncloud/gallery.svg?branch=master)](https://travis-ci.org/owncloud/gallery)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/owncloud/gallery/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/owncloud/gallery/?branch=master)
 
@@ -83,14 +83,14 @@ There are many ways in which you can help make Gallery a better product
 * Read the section about server and browser requirements
 * Make sure you've disabled the original Pictures app
 * Read the "Known issues" section below
-* Get the latest version of the app from [the releases page](https://github.com/owncloud/galleryplus/releases)
-* [Check if they have already been reported](https://github.com/owncloud/galleryplus/issues)
+* Get the latest version of the app from [the releases page](https://github.com/owncloud/gallery/releases)
+* [Check if they have already been reported](https://github.com/owncloud/gallery/issues)
 
 ### Known issues
 
 #### Within deep folders
 
-* You may stop receiving images as you run into [this issue](https://github.com/owncloud/galleryplus/issues/27)
+* You may stop receiving images as you run into [this issue](https://github.com/owncloud/gallery/issues/27)
 * It may take longer to initialise the view as we're parsing every parent folder to look for configuration files
 
 #### Configurations
@@ -138,8 +138,8 @@ Next add a few new entries to your **config/config.php** configuration file.
 If you want support for Raw picture files, you'll need to patch your installation of ownCloud 8.0
 
 ```
-$ patch -p1 -l < apps/galleryplus/patches/tmpfile-extension.pull.13654.patch
-$ patch -p1 -l < apps/galleryplus/patches/raw-preview.pull.13652.patch
+$ patch -p1 -l < apps/gallery/patches/tmpfile-extension.pull.13654.patch
+$ patch -p1 -l < apps/gallery/patches/raw-preview.pull.13652.patch
 ```
 
 and you'll need to add `OC\\Preview\\Raw` to the **config/config.php** configuration file
@@ -163,8 +163,8 @@ Some of ownCloud's internal operations make the Gallery app very slow
 Things are in motion to fix preview caching for ownCloud 8.1, but you can benefit from these improvements right now if you're willing to patch your ownCloud installation.
 
 ```
-$ patch -p1 -l < apps/galleryplus/patches/max-preview.pull.13674.patch
-$ patch -p1 -l < apps/galleryplus/patches/bitmap-max-preview.pull.13635.patch
+$ patch -p1 -l < apps/gallery/patches/max-preview.pull.13674.patch
+$ patch -p1 -l < apps/gallery/patches/bitmap-max-preview.pull.13635.patch
 ```
 
 It will always be relatively slow to get the first preview as this is when the conversion is taking place, but from the 2nd request, it should only take a few seconds, even for pictures weighing several hundred MBs.
@@ -176,21 +176,21 @@ The next step will be to be able to generate these previews by clicking on a but
 
 ### Installing from archive
 
-* Go to the [the releases page](https://github.com/owncloud/galleryplus/releases)
+* Go to the [the releases page](https://github.com/owncloud/gallery/releases)
 * Download the latest release/archive to your server's **owncloud/apps/** directory
 * Unpack the app
-* **IMPORTANT**: Rename it to galleryplus
+* **IMPORTANT**: Rename it to gallery
 
 ### Installing from Git
 
 In your terminal go into the **owncloud/apps/** directory and then run the following command:
 ```
-$ git clone -b stable8 https://github.com/owncloud/galleryplus.git
+$ git clone -b stable8 https://github.com/owncloud/gallery.git
 ```
 
 Now you can activate it in the apps menu. It's called Gallery
 
-To update the app go inside you **owncloud/apps/galleryplus/** directory and type:
+To update the app go inside you **owncloud/apps/gallery/** directory and type:
 ```
 $ git pull --rebase origin stable8
 ```

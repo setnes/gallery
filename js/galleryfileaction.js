@@ -21,7 +21,7 @@ var galleryFileAction = {
 			extension = '.public';
 		}
 		var query = OC.buildQueryString(params);
-		return OC.generateUrl('apps/galleryplus/' + endPoint + extension + path, null) + '?' +
+		return OC.generateUrl('apps/gallery/' + endPoint + extension + path, null) + '?' +
 			query;
 	},
 

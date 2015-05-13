@@ -3,7 +3,7 @@ var GalleryButton = {};
 GalleryButton.isPublic = false;
 GalleryButton.button = {};
 GalleryButton.url = null;
-GalleryButton.appName = 'galleryplus';
+GalleryButton.appName = 'gallery';
 
 GalleryButton.onFileListUpdated = function () {
 	var hasImages = false;
@@ -40,7 +40,7 @@ GalleryButton.buildGalleryUrl = function (dir) {
 		params.token = token;
 		tokenPath = 's/{token}';
 	}
-	GalleryButton.url = OC.generateUrl('apps/galleryplus/' + tokenPath, params) + '#' + encodeURIComponent(dir);
+	GalleryButton.url = OC.generateUrl('apps/gallery/' + tokenPath, params) + '#' + encodeURIComponent(dir);
 };
 
 GalleryButton.hijackShare = function () {
