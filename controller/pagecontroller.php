@@ -16,6 +16,7 @@ namespace OCA\GalleryPlus\Controller;
 
 use OCP\IURLGenerator;
 use OCP\IRequest;
+use OCP\IConfig;
 
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -38,6 +39,10 @@ class PageController extends Controller {
 	 * @var IURLGenerator
 	 */
 	private $urlGenerator;
+	/**
+	 * @var IConfig
+	 */
+	private $appConfig;
 
 	/**
 	 * Constructor
@@ -46,17 +51,20 @@ class PageController extends Controller {
 	 * @param IRequest $request
 	 * @param Environment $environment
 	 * @param IURLGenerator $urlGenerator
+	 * @param IConfig $appConfig
 	 */
 	public function __construct(
 		$appName,
 		IRequest $request,
 		Environment $environment,
-		IURLGenerator $urlGenerator
+		IURLGenerator $urlGenerator,
+		IConfig $appConfig
 	) {
 		parent::__construct($appName, $request);
 
 		$this->environment = $environment;
 		$this->urlGenerator = $urlGenerator;
+		$this->appConfig = $appConfig;
 	}
 
 	/**
@@ -97,13 +105,22 @@ class PageController extends Controller {
 		$appName = $this->appName;
 		$displayName = $this->environment->getDisplayName();
 		$albumName = $this->environment->getSharedFolderName();
+		$server2ServerSharing = $this->appConfig->getAppValue(
+			'files_sharing', 'outgoing_server2server_share_enabled', 'yes'
+		);
+		$server2ServerSharing = ($server2ServerSharing === 'yes') ? true : false;
+		$protected = $this->environment->isShareProtected();
+		$protected = ($protected) ? 'true' : 'false';
 
 		// Parameters sent to the template
 		$params = [
-			'appName'     => $appName,
-			'token'       => $token,
-			'displayName' => $displayName,
-			'albumName'   => $albumName
+			'appName'              => $appName,
+			'token'                => $token,
+			'displayName'          => $displayName,
+			'albumName'            => $albumName,
+			'server2ServerSharing' => $server2ServerSharing,
+			'protected'            => $protected,
+			'filename'             => $albumName
 		];
 
 		// Will render the page using the template found in templates/public.php
