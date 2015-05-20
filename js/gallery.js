@@ -187,6 +187,25 @@ Gallery.sorter = function () {
 };
 
 /**
+ * Switches to the Files view
+ *
+ * @param event
+ */
+Gallery.switchToFilesView = function (event) {
+	event.stopPropagation();
+
+	var subUrl = '';
+	var params = {path: '/' + encodeURIComponent(Gallery.currentAlbum)};
+	if (Gallery.token) {
+		params.token = Gallery.token;
+		subUrl = 's/{token}?path={path}';
+	} else {
+		subUrl = 'apps/files?dir={path}';
+	}
+	OC.redirect(OC.generateUrl(subUrl, params));
+};
+
+/**
  * Populates the share dialog with the needed information
  *
  * @param event
@@ -204,7 +223,7 @@ Gallery.share = function (event) {
 			OC.Share.showLink = function () {
 				var r = target.apply(this, arguments);
 				$('#linkText').val($('#linkText').val().replace('index.php/s/', 'index.php/apps/' +
-				Gallery.appName + '/s/'));
+					Gallery.appName + '/s/'));
 
 				return r;
 			};

@@ -40,7 +40,8 @@ GalleryButton.buildGalleryUrl = function (dir) {
 		params.token = token;
 		tokenPath = 's/{token}';
 	}
-	GalleryButton.url = OC.generateUrl('apps/galleryplus/' + tokenPath, params) + '#' + encodeURIComponent(dir);
+	GalleryButton.url =
+		OC.generateUrl('apps/galleryplus/' + tokenPath, params) + '#' + encodeURIComponent(dir);
 };
 
 GalleryButton.hijackShare = function () {
@@ -58,11 +59,11 @@ GalleryButton.hijackShare = function () {
 			$("#linkSwitchButton").toggle(function () {
 				$(this).text("Show Files link");
 				$('#linkText').val($('#linkText').val().replace('index.php/s/', 'index.php/apps/' +
-				GalleryButton.appName + '/s/'));
+					GalleryButton.appName + '/s/'));
 			}, function () {
 				$(this).text("Show Gallery link");
 				$('#linkText').val($('#linkText').val().replace('index.php/apps/' +
-				GalleryButton.appName + '/s/', 'index.php/s/'));
+					GalleryButton.appName + '/s/', 'index.php/s/'));
 
 			});
 
@@ -92,11 +93,18 @@ $(document).ready(function () {
 
 			$('#fileList').on('updated', GalleryButton.onFileListUpdated);
 
-			// toggle for opening shared file list as picture view
-			GalleryButton.button = $('<div id="openAsFileListButton" class="button">' +
-			'<img class="svg" src="' + OC.imagePath('core', 'actions/toggle-pictures.svg') + '"' +
-			'alt="' + t('gallery', 'Picture view') + '"/>' +
-			'</div>');
+			// toggle for opening the files list in the Gallery app
+			GalleryButton.button =
+				$('<div class="button view-switcher left-switch-button disabled-button">' +
+					'<img class="svg" src="' + OC.imagePath('core', 'actions/toggle-filelist.svg') +
+					'"' +
+					'alt="' + t('gallery', 'Picture view') + '"/>' +
+					'</div>' +
+					'<div id="gallery-button" class="button view-switcher right-switch-button inactive-button">' +
+					'<img class="svg" src="' + OC.imagePath('core', 'actions/toggle-pictures.svg') +
+					'"' +
+					'alt="' + t('gallery', 'Picture view') + '"/>' +
+					'</div>');
 
 			GalleryButton.button.click(function () {
 				window.location.href = GalleryButton.url;
